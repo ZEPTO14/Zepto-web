@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZEPTO</title>
+    
+    <style>
+        #gui-container {
+            position: absolute;
+            top: 60px;
+            right: 10px;
+            z-index: 10;
+        }
+    </style>
+  
+  
+  <script type="module" crossorigin src="./assets/index-7e3ee34d.js"></script>
+  <link rel="stylesheet" href="./assets/index-74e38d56.css">
+</head>
+<body>
+
+    <!-- ======  BINTANG LATAR BELAKANG GLOBAL  ====== -->
+    <canvas id="global-starfield"></canvas>
+
+    <!-- ======  SPLASH SCREEN  ====== -->
+    <div id="splash-screen">
+        <div class="splash-orbit">
+            <div class="splash-planet">🪐</div>
+            <div class="splash-ring"></div>
+        </div>
+        <h1 class="splash-title z-logo-title"><img class="z-wordmark" src="./assets/zepto-wordmark-2900cb43.png" alt="ZEPTO" width="2048" height="800"></h1>
+        <p class="splash-sub">Menyiapkan roketmu...</p>
+    </div>
+
+    <!-- ======  TOMBOL MUSIK (global) ====== -->
+    <button id="music-toggle" class="music-toggle" title="Musik latar">🎵</button>
+
+    <!-- ======  HALAMAN UTAMA  ====== -->
+    <div id="main-menu" class="screen active-screen">
+        <div class="home-container">
+            <div class="mascot-row">
+                <div class="mascot-astronaut">👨‍🚀</div>
+                <div class="mascot-bubble" id="mascot-sapaan">Halo, Penjelajah! 👋 Siap menjelajahi Tata Surya bersama ZEPTO?</div>
+            </div>
+
+            <p class="z-eyebrow">PETUALANGAN BELAJAR TATA SURYA</p><h1 class="home-title z-logo-title"><img class="z-wordmark" src="./assets/zepto-wordmark-2900cb43.png" alt="ZEPTO" width="2048" height="800"></h1><h2 class="z-tagline">Zona Eksplorasi Planet dan Tata Surya</h2><p class="z-subtitle">Media Pembelajaran Interaktif Tata Surya untuk Siswa Kelas IV SD</p><div class="z-home-progress"><span id="z-stars">⭐ 0 Bintang ZEPTO</span><span id="z-level">Penjelajah Pemula</span></div>
+
+            <div class="home-cta-row">
+                <button id="btn-mulai" class="home-cta-btn">Mulai Petualangan</button>
+                <button id="btn-lanjutkan" class="home-cta-btn home-cta-secondary" style="display:none;">Lanjutkan Petualangan</button>
+            </div>
+
+            <div class="fact-card" id="fact-card">
+                <span class="fact-label">💡 Fakta Hari Ini</span>
+                <p class="fact-text" id="fact-text">Memuat fakta...</p>
+            </div>
+
+<div class="menu-cards-grid"><button class="menu-card" id="btn-belajar"><span class="menu-card-icon">📚</span><span class="menu-card-title">BELAJAR</span><span class="z-menu-desc">Kenali rumah kita di semesta</span><span class="z-menu-arrow">↗</span></button><button class="menu-card" id="btn-jelajah"><span class="menu-card-icon">🪐</span><span class="menu-card-title">JELAJAH 3D</span><span class="z-menu-desc">Dekati planet favoritmu</span><span class="z-menu-arrow">↗</span></button><button class="menu-card" id="btn-misi"><span class="menu-card-icon">🚀</span><span class="menu-card-title">MISI ZEPTO</span><span class="z-menu-desc">Temukan objek, raih bintang</span><span class="z-menu-arrow">↗</span></button><button class="menu-card" id="btn-bermain"><span class="menu-card-icon">🎮</span><span class="menu-card-title">BERMAIN</span><span class="z-menu-desc">Belajar sambil bermain</span><span class="z-menu-arrow">↗</span></button><button class="menu-card" id="btn-lab"><span class="menu-card-icon">🌘</span><span class="menu-card-title">SIMULASI</span><span class="z-menu-desc">Lihat sains bergerak</span><span class="z-menu-arrow">↗</span></button><button class="menu-card" id="btn-evaluasi"><span class="menu-card-icon">📝</span><span class="menu-card-title">EVALUASI</span><span class="z-menu-desc">Ukur hasil belajarmu</span><span class="z-menu-arrow">↗</span></button></div>            <div class="home-secondary-links"><button id="btn-progres" class="secondary-link">📊 Progres</button><button id="btn-paspor" class="secondary-link">🪪 Paspor</button>
+                <button id="btn-reset-belajar" class="secondary-link" type="button">🔄 Reset Pembelajaran</button><button id="btn-pengaturan" class="secondary-link">⚙️ Pengaturan</button>
+                <button id="btn-cara-bermain" class="secondary-link">❓ Cara Bermain</button>
+                <button id="btn-tentang" class="secondary-link">👤 Profil Pembuat</button>
+                <button id="btn-pembimbing" class="secondary-link">🎓 Dosen Pembimbing</button>
+                <button id="btn-penguji" class="secondary-link">🎓 Profil Dosen Penguji</button>
+            </div>
+
+            <div class="rocket-illustration">🚀</div>
+        </div>
+    </div>
+
+    <!-- ======  JELAJAH PLANET (Tata Surya 3D)  ====== -->
+    <div id="solar-system-screen" class="screen">
+        <button class="back-btn" data-back>⬅ Menu Utama</button>
+        <div id="gui-container"></div><div id="z-mission-banner" hidden><span id="z-mission-text"></span><button id="z-cancel-mission">Keluar misi</button></div><details id="z-explore-tools"><summary>🪐 Objek & tampilan</summary><div class="z-explore-buttons"><button data-focus="Sun">☀️ Matahari</button><button data-focus="Earth">🪐 Planet</button><button id="z-earth-moon">🌍 Bumi & Bulan</button><button data-focus="Comet">☄️ Komet</button><button data-focus="Asteroid">🪨 Asteroid</button><button data-focus="Pluto">⚪ Pluto · planet katai</button><button id="z-complete">🌌 Tata Surya Lengkap</button></div><div class="z-visibility"><label><input type="checkbox" data-visible="orbits" checked> Orbit</label><label><input type="checkbox" data-visible="Moon" checked> Bulan</label><label><input type="checkbox" data-visible="Asteroid" checked> Asteroid</label><label><input type="checkbox" data-visible="Comet" checked> Komet</label></div><button id="z-help">❓ Kontrol 3D</button><p>Ukuran, jarak, dan waktu disederhanakan.</p></details><div id="z-hover-label" hidden></div>
+        <div id="solar-canvas-container"></div>
+        <div id="planet-labels" class="planet-labels-layer" style="display:none;"></div>
+
+        <div class="search-box">
+            <input type="text" id="planet-search" class="search-input" placeholder="🔍 Cari planet... (mis. Mars)" autocomplete="off">
+            <div id="search-suggestions" class="search-suggestions"></div>
+        </div>
+
+        <div id="favorites-bar" class="favorites-bar"></div>
+
+        <div id="planetInfo" class="planet-info">
+            <div class="planet-info-content"></div>
+        </div>
+
+        <!-- Bar kontrol ramah anak -->
+        <div class="kid-controls-bar">
+            <button id="kid-btn-jeda" class="kid-btn">⏸️ Jeda Orbit</button>
+            <div class="kid-speed-group">
+                <span class="kid-speed-label">🐢</span>
+                <input type="range" id="kid-speed-slider" min="0" max="2" step="0.5" value="1" class="kid-speed-slider">
+                <span class="kid-speed-label">🐇</span>
+            </div>
+            <button id="kid-btn-nama" class="kid-btn">🏷️ Nama Planet</button>
+            <button id="kid-btn-reset" class="kid-btn">🔄 Ulangi Tampilan</button>
+            <button id="kid-btn-tur" class="kid-btn kid-btn-tur">🚀 Tur Penjelajah ZEPTO</button>
+            <button id="kid-btn-lanjutan" class="kid-btn">⚙️ Lanjutan</button>
+        </div>
+
+        <!-- Bar kontrol tur otomatis -->
+        <div id="tour-bar" class="tour-bar" style="display:none;">
+            <button id="tour-sebelumnya" class="kid-btn">⏮ Sebelumnya</button><span id="tour-status" class="tour-status"></span>
+            <button id="tour-jeda" class="kid-btn">⏸️ Jeda</button>
+            <button id="tour-berikutnya" class="kid-btn">⏭️ Lanjut</button>
+            <button id="tour-berhenti" class="kid-btn">⏹️ Berhenti</button>
+        </div>
+    </div>
+
+    <!-- ======  MISI ANTARIKSA  ====== -->
+    <div id="mission-screen" class="screen">
+        <button class="back-btn" data-back>⬅ Menu Utama</button>
+        <div id="mission-container" class="hub-container"></div>
+    </div>
+
+    <!-- ======  ZONA BERMAIN  ====== -->
+    <div id="playzone-screen" class="screen">
+        <button class="back-btn" data-back>⬅ Menu Utama</button>
+        <div id="playzone-container" class="hub-container"></div>
+    </div>
+
+    <!-- ======  LABORATORIUM ANTARIKSA  ====== -->
+    <div id="lab-screen" class="screen">
+        <button class="back-btn" data-back>⬅ Menu Utama</button>
+        <div id="lab-container" class="hub-container"></div>
+    </div>
+
+    <!-- ======  PASPOR ASTRONAUT  ====== -->
+    <div id="passport-screen" class="screen">
+        <button class="back-btn" data-back>⬅ Menu Utama</button>
+        <div id="passport-container" class="hub-container"></div>
+    </div>
+
+    <!-- ======  PENGATURAN  ====== -->
+    <div id="settings-screen" class="screen">
+        <button class="back-btn" data-back>⬅ Menu Utama</button>
+        <div id="settings-container" class="hub-container"></div>
+    </div>
+
+    <!-- ======  CARA BERMAIN  ====== -->
+    <div id="howto-screen" class="screen">
+        <button class="back-btn" data-back>⬅ Menu Utama</button>
+        <div class="hub-container">
+            <div class="hub-header">
+                <h1>❓ Cara Bermain</h1>
+                <p class="hub-sub">Panduan singkat untuk memulai petualanganmu</p>
+            </div>
+            <div class="howto-list">
+                <div class="howto-item"><span class="howto-icon">🌌</span><div><strong>Jelajah Planet</strong><p>Sentuh planet untuk mendekat dan membaca kartu faktanya. Gunakan bar kontrol untuk mengatur kecepatan orbit.</p></div></div>
+                <div class="howto-item"><span class="howto-icon">🚀</span><div><strong>Misi Antariksa</strong><p>Selesaikan misi belajar singkat untuk mendapatkan lencana di Paspor Astronaut-mu.</p></div></div>
+                <div class="howto-item"><span class="howto-icon">🎮</span><div><strong>Zona Bermain</strong><p>Mainkan kuis, permainan mencocokkan, dan susun planet untuk menguji pengetahuanmu.</p></div></div>
+                <div class="howto-item"><span class="howto-icon">🔬</span><div><strong>Laboratorium Antariksa</strong><p>Amati simulasi gerhana, siang-malam, dan bandingkan ukuran planet.</p></div></div>
+                <div class="howto-item"><span class="howto-icon">🪪</span><div><strong>Paspor Astronaut</strong><p>Lihat semua progres belajarmu: stempel planet, lencana, dan riwayat kuis.</p></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======  TENTANG PEMBUAT  ====== -->
+    <div id="penguji-screen" class="screen">
+ <button class="back-btn" data-back>← Kembali</button>
+ <div class="hub-container"><div class="pj-wrap"><small>ZEPTO · PROFIL AKADEMIK</small><h1>Profil Dosen Penguji</h1>
+ <div id="pj-list"></div><p><button id="pj-add">+ Tambah profil</button> <button id="pj-export">Unduh daftar untuk web</button></p>
+ <form id="pj-form" hidden><h2 id="pj-title">Tambah profil</h2>
+ <label>Nama lengkap dan gelar <input id="pj-nama" required maxlength="120"></label>
+ <label>Peran penguji <input id="pj-peran" maxlength="100" placeholder="Misalnya: Penguji I"></label>
+ <label>Institusi <input id="pj-institusi" maxlength="160"></label>
+ <label>Profil singkat <textarea id="pj-bio" rows="3" maxlength="800"></textarea></label>
+ <button type="submit">Simpan profil</button> <button type="button" id="pj-cancel">Batal</button></form>
+ <p id="pj-status" role="status"></p><small>Perubahan yang Anda simpan hanya berlaku di perangkat ini.</small>
+ </div></div></div>
+<div id="pembimbing-screen" class="screen">
+ <button class="back-btn" data-back>← Kembali</button>
+ <div class="hub-container"><section class="pb-wrap" aria-labelledby="pb-title">
+  <p class="pb-eyebrow">ZEPTO · PROFIL AKADEMIK</p><h1 id="pb-title">Dosen Pembimbing</h1>
+  <div class="pb-grid">
+   <article class="pb-card"><p class="pb-label">Dosen Pembimbing I</p>
+    <img class="pb-photo" src="./assets/nyoman-ayu-putri-lestari-f2725d1b.png" alt="Foto Dr. Nyoman Ayu Putri Lestari" width="1066" height="1600">
+    <h2>Dr. Nyoman Ayu Putri Lestari, S.Pd., M.Pd.</h2><p class="pb-nidn">NIDN: 0827049401</p>
+   </article>
+   <article class="pb-card"><p class="pb-label">Dosen Pembimbing II</p>
+    <div class="pb-placeholder"><span aria-hidden="true">🎓</span><p>Foto menyusul</p></div>
+    <h2>Data menyusul</h2><p class="pb-pending">Nama dan NIDN akan ditambahkan setelah tersedia.</p>
+   </article>
+  </div>
+ </section></div>
+</div>
+ <div id="about-screen" class="screen">
+        <button class="back-btn" data-back>⬅ Menu Utama</button>
+        <div class="hub-container">
+            <div class="profile-card">
+                <img class="z-creator-photo" src="./assets/adistia-rahmadani-077f55cd.png" alt="Foto Adistia Rahmadani, pembuat ZEPTO" width="180" height="240">
+                <h2 class="profile-name">Adistia Rahmadani</h2>
+                <p class="profile-role">Pembuat Media Pembelajaran ZEPTO</p>
+                <dl class="z-creator-details">
+                    <div><dt>Nama</dt><dd>Adistia Rahmadani</dd></div>
+                    <div><dt>NIM</dt><dd>2386206001</dd></div>
+                    <div><dt>Program Studi</dt><dd>PGSD (Pendidikan Guru Sekolah Dasar)</dd></div>
+                    <div><dt>Fakultas</dt><dd>Fakultas Bisnis, Pariwisata dan Pendidikan</dd></div>
+                </dl>
+<p class="profile-bio">Media pembelajaran interaktif Tata Surya untuk siswa kelas IV SD. Belajar melalui materi, eksplorasi 3D, misi, simulasi, permainan, dan evaluasi.</p><section class="z-thesis"><h3>Judul Skripsi</h3><p>PENGEMBANGAN APLIKASI ZEPTO UNTUK MENINGKATKAN HASIL BELAJAR MATERI TATA SURYA SISWA KELAS VI</p></section>                <p class="profile-note">
+                    Aplikasi ini dibangun menggunakan THREE.js, Vite &amp; Capacitor, sebagai media
+                    pembelajaran tata surya interaktif untuk siswa Sekolah Dasar.
+                </p>
+            </div>
+        </div>
+    </div>
+
+<div id="zepto-screen" class="screen"><button class="back-btn" data-back>⬅ Menu Utama</button><main id="zepto-content" class="hub-container z-container"></main></div><div id="zepto-toast" role="status" aria-live="polite"></div><dialog id="z-tutorial"><h2>Selamat datang di Jelajah 3D!</h2><p>👆 Ketuk planet untuk melihat informasi.</p><p>↔ Geser layar untuk memutar kamera.</p><p>🔍 Cubit layar / scroll untuk memperbesar.</p><p>🔊 Tekan Dengarkan untuk narasi.</p><button id="z-understand" class="z-btn z-primary">Saya Mengerti</button></dialog>
+    <dialog id="z-reset-dialog" aria-labelledby="z-reset-title" aria-describedby="z-reset-description">
+        <h2 id="z-reset-title">Ulangi pembelajaran dari awal?</h2>
+        <p id="z-reset-description">Nama dan kelas siswa, pretest, posttest, nilai kuis, progres materi, misi, permainan, bintang, lencana, dan planet favorit pada perangkat ini akan dihapus. Kamu dapat mengisi nama kembali dan memulai petualangan baru.</p>
+        <p>Pengaturan suara dan kualitas grafis tetap disimpan. Reset tidak dapat dibatalkan setelah dilakukan.</p>
+        <p id="z-reset-error" role="alert" hidden></p>
+        <div class="z-actions"><button id="z-reset-cancel" class="z-btn" type="button" autofocus>Batal</button><button id="z-reset-confirm" class="z-btn z-reset-confirm" type="button">Ya, reset dan mulai ulang</button></div>
+    </dialog>
+    
+</body>
+</html>
